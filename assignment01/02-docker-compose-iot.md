@@ -2,8 +2,7 @@
 >> ให้นำไฟล์ docker-compose.yaml มาอธิบายว่า แต่ละส่วนคืออะไร โดยใช้การ comment ในไฟล์ docker-compose.yaml
 
 ติดตั้ง Docker
-https://www.docker.com/
-ไปที่ลิ้งdocker แล้วกดโหลดตามที่เราใช้งาน กลุ่มเราโหลดบนwindow 
+
 ติดตั้ง docker compose ต้องติดตั้งdocker destop  ด้วย ใช้คำสั่ง 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose

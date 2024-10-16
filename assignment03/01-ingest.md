@@ -1,5 +1,14 @@
 # Ingest and store real-time data from IoT sensors 
 >> อธิบาย 3 ส่วนนี้ สร้างมาได้อย่างไร
+--Data Ingestion (การรับข้อมูล)
+ใช้ MQTT หรือ HTTP Protocol เพื่อรับข้อมูลจาก IoT Sensors ที่ส่งเข้ามาอย่างต่อเนื่องในรูปแบบสตรีม
+
+--Data Processing (การประมวลผลข้อมูล)
+ใช้เครื่องมือเช่น Apache Kafka หรือ Apache Flink เพื่อประมวลผลข้อมูลแบบเรียลไทม์ ก่อนจะส่งต่อไปยังระบบจัดเก็บ
+
+--Data Storage (การจัดเก็บข้อมูล)
+ใช้ฐานข้อมูลแบบ NoSQL เช่น MongoDB หรือ InfluxDB ซึ่งรองรับการจัดเก็บข้อมูลจำนวนมากในรูปแบบ Time Series ข้อมูลจาก IoT เซ็นเซอร์
+
 
 ## iot-sensor-1
 >> คืออะไร 
