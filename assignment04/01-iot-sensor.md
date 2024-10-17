@@ -4,7 +4,7 @@
 MQTT Topic = "iot-frames"
 
 ## MQTT Payload
-bash
+```bash
    /// json output
   StaticJsonDocument<512> jsonDoc;
   jsonDoc["id"] = "43245253";
@@ -18,6 +18,7 @@ bash
   payload["humidity"] = humid;
   payload["pressure"] = pressure/100;
   payload["luminosity"] = analogval;
+```
 #Set Up Board Cucumber RS
 
 ดาวน์โหลดและติดตั้ง Arduino IDE
@@ -57,7 +58,7 @@ include library สำหรับเชื่อมต่อกับ MQTT brok
 เวลาและวันที่ที่ได้รับจากเซิร์ฟเวอร์ NTP จะถูกบันทึกลงใน JSON payload ซึ่งจะใช้เป็น timestamp ของข้อมูลเซ็นเซอร์
 
 ## ESP32
-cpp
+```cpp
 /// LIB
 #include <Wire.h>
 #include <Adafruit_BMP280.h>
@@ -319,3 +320,8 @@ void loop() {
   strip.show();
   delay(500);
 }
+```
+
+
+# flowchart
+![flowchart](./fc.png)

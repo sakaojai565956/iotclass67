@@ -9,9 +9,9 @@
 
 ส่งข้อมูลไปที่ Collection ที่กำหนด โดย ใช้ iot_frames ลงใน Database IOT
 
-File Path: kafka_connect/data/scripts/config/connect-mongodb-iot-frames-sink.json
+ตัวอย่างการทำงาน
 
-bash
+```bash
 
 
 {
@@ -29,10 +29,10 @@ bash
       "key.converter.schemas.enable":false
    }
 }
-ในส่วนเชื่อมต่อที่ 2 เป็นการดึงข้อมูลจาก "iot-aggregate-metric-sensor" ไปที่ Collection "iot_aggregate_metric_sensor"
+```
+ในส่วนเชื่อมต่อที่ 2 ทำการตั้งค่าเพื่อเก็บข้อมูลที่ได้รับจาก "iot-aggregate-metric-sensor" ไปที่ Collection "iot_aggregate_metric_sensor"
 
-File Path: kafka_connect/data/scripts/config/connect-mongodb-iot-aggregate-metrics-sensor-sink.json
-bash
+```bash
 {
    "name":"iot-aggregate-metrics-sensor-mongodb-sink",
    "config":{
@@ -48,12 +48,13 @@ bash
       "key.converter.schemas.enable":false
    }
 }
+```
 
-ส่วนสุดท้่ายเป็นการดึงข้อมูลจาก Topic "iot-aggregate-metric-place" ไปที่ Collection "iot_aggreagate_metric_place"
+ในส่วนที่ 3: ส่งข้อมูลตามสถานที่ (place) จาก Kafka ไปยัง MongoDB
+ในกรณีนี้ Kafka topic ที่ใช้คือ iot-aggregate-metrics-place ซึ่งจะทำการเก็บข้อมูลไปยังคอลเล็กชัน iot_aggregate_metrics_place
 
-File Path: kafka_connect/data/scripts/config/connect-mongodb-iot-aggregate-metrics-place-sink.json
 
-bash
+```bash
 
 {
    "name":"iot-aggregate-metrics-place-mongodb-sink",
@@ -70,12 +71,17 @@ bash
       "key.converter.schemas.enable":false
    }
 }
+```
 
+การเชื่อมต่อ Kafka กับ Prometheus
+Prometheus เป็นระบบที่ใช้ในการเก็บข้อมูลแบบ time-series ซึ่งเหมาะสำหรับการติดตามค่าต่างๆ ที่เปลี่ยนแปลงตามเวลา เช่น ข้อมูลจาก IoT metrics ดังนั้นการเชื่อมต่อกับ Prometheus นั้นจะทำให้เราสามารถเก็บข้อมูลจาก Kafka ในรูปแบบที่สามารถใช้ในการสังเกตการณ์ (monitoring) ได้อย่างมีประสิทธิภาพ
+
+ในที่นี้เราใช้ PrometheusMetricsSinkConnector เพื่อส่งข้อมูลจาก Kafka topic ที่ชื่อ iot-metrics-time-series ไปเก็บไว้ใน Prometheus
 ในส่วนของข้อมูลที่เป็น Time Serires จะต้องเก็บข้อมูลไปที่ Prometheus โดยจะดึงข้อมูลจาก Topic "iot-metric-time-series" โดย Prometheus ดึงข้อมูลผ่าน HTTP server
 
-File Path: kafka_connect/data/scripts/config/connect-prometheus-sink.json
 
-bash
+
+```bash
 {
   "name" : "prometheus-connector-sink",
   "config" : {
@@ -95,3 +101,4 @@ bash
    "behavior.on.error": "log"
   }
 }
+```
